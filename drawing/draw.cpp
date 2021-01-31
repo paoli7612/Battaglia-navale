@@ -12,7 +12,7 @@ void resize(int x1, int y1, int x2, int y2){HWND console = GetConsoleWindow(); /
 
 void scr(char c){printf("%c",c);}	
 void sir(int v){printf("%d",v);}
-void go_print(int x, int y, char *t, int n=0){go(x,y);printf(t,n);}
+void go_print(int x, int y, const char *t, int n=0){go(x,y);printf(t,n);}
 void go_scr(int x, int y, char c){go(x,y);scr(c);}
 void go_sir(int x, int y, int v){go(x,y);sir(v);}
 void print_center(char *c, int y, int len){go_print(sX_CENTER-len/2,y,c);}

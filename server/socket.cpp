@@ -82,10 +82,17 @@ void server_recv_connect_clients(int client){
 	}
 }
 
-void server_recv(int client){
+void server_recv(int client)
+{
 	reset_buffer(client);
-	for (int n=0; n<ML; n++){buffer_client[client][n]=NO_RECV;}
-	while (true){
+	
+	for (int n=0; n<ML; n++)
+	{
+		buffer_client[client][n]=NO_RECV;
+	}
+	
+	while (true)
+	{
 		recv(clients[client], buffer_client[client], ML, 0);
 		for (int n=0; n<ML; n++)
 		{
