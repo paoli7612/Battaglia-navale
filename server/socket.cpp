@@ -38,7 +38,8 @@ void apply_buffer_toSend(char *bufferP){
 	}
 }
 
-void server_start(){
+void server_start()
+{
 	WSADATA wsadata;
 	WSAStartup(MAKEWORD(2,2),&wsadata);
 	sock = socket(PF_INET, SOCK_STREAM, 0);
@@ -51,27 +52,34 @@ void server_start(){
 	addr = inet_ntoa (*(struct in_addr*) he->h_addr_list[0]);
 }
 
-void server_send(int client, char buffer[ML]){
-	send(clients[client], buffer, sizeof(buffer), 0);
+void server_send(int client, const char buffer[ML])
+{
+	send(clients[client], buffer, sizeof(char[ML]), 0);
 }
 
-void server_send_aff(int client,int x, int y, int dir, int len){
+void server_send_aff(int client,int x, int y, int dir, int len)
+{
 	buffer_client[client][0] = x;
 	buffer_client[client][1] = y;
 	buffer_client[client][2] = dir;
 	buffer_client[client][3] = len;
-	send(clients[client], buffer_client[client], sizeof(buffer_client[client]), 0);
+	send(clients[client], buffer_client[client], sizeof(char[ML]), 0);
 }
 
-void server_send_char(int client, char c){
+void server_send_char(int client, char c)
+{
 	buffer_client[client][0] = c;
-	send(clients[client], buffer_client[client], sizeof(buffer_client[client]), 0);
+	send(clients[client], buffer_client[client], sizeof(char[ML]), 0);
 }
 
-void server_recv_connect_clients(int client){
+void server_recv_connect_clients(int client)
+{
 	reset_buffer(client);
-	for (int n=0; n<ML; n++){buffer_client[client][n]=0;}
-	while (true){
+	for (int n=0; n<ML; n++)
+		buffer_client[client][n]=0;
+		
+	while (true)
+	{
 		recv(clients[client], buffer_client[client], ML, 0);
 		for (int n=0; n<ML; n++)
 		{
@@ -87,9 +95,7 @@ void server_recv(int client)
 	reset_buffer(client);
 	
 	for (int n=0; n<ML; n++)
-	{
-		buffer_client[client][n]=NO_RECV;
-	}
+		buffer_client[client][n] = static_cast<char>(NO_RECV);
 	
 	while (true)
 	{
@@ -103,7 +109,6 @@ void server_recv(int client)
 	}
 }
 
-
 void server_stop(){
 	close(sock);
 	WSACleanup();
@@ -111,7 +116,8 @@ void server_stop(){
 
 void server_wait_clients(){
 	draw_wait_clients(1);
-	for (int n=0; n<2; n++){
+	for (int n=0; n<2; n++)
+	{
 		// Attendi collegamento client
 		listen(sock, 1);
 		clients[n] = accept(sock, NULL, NULL);
@@ -129,10 +135,12 @@ void server_wait_clients(){
 	server_send(nPLAYER_2,"1");
 }
 
-void save_naval(int client){
+void save_naval(int client)
+{
 	int p=0;
 	for (int y=0; y<10; y++){
-		for (int x=0; x<10; x++){
+		for (int x=0; x<10; x++)
+		{
 			mat[client][x][y] = buffer_client[client][p];
 			p++;
 		}
@@ -140,8 +148,10 @@ void save_naval(int client){
 	naval_draw_mat(mat[client],client);
 }
 
-void convert_char_mat(int client){
+void convert_char_mat(int client)
+{
 	int p=0;
+	
 	for (int y=0; y<10; y++)
 		for (int x=0; x<10; x++){
 			mat[client][x][y] = buffer_client[client][p];

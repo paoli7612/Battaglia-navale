@@ -2,12 +2,12 @@
 #include "partita.cpp"
 
 int main(int argc, char *argv[]){
-	
+
 	ask_credential();
 	init_terminal(CLIENT);
 	draw_client(nickname, addr, port);
 	int vincitore;
-	
+
 	if (client_start())
 	{
 		sleep(1);
@@ -19,16 +19,16 @@ int main(int argc, char *argv[]){
 	}
 	else
 	{
-		system("CLS");
+		system("cls");
 		printf("Connessione non riuscita");
 		sleep(3);
 	}
-	
+
 	terminal_exit();
-	
+
 	if (argc > 1)
 		system("start launcher/main.exe byBatch");
-	else 
+	else
 		system("start ../launcher/main.exe");
 	return 0;
 }

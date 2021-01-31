@@ -15,7 +15,11 @@ void sir(int v){printf("%d",v);}
 void go_print(int x, int y, const char *t, int n=0){go(x,y);printf(t,n);}
 void go_scr(int x, int y, char c){go(x,y);scr(c);}
 void go_sir(int x, int y, int v){go(x,y);sir(v);}
-void print_center(char *c, int y, int len){go_print(sX_CENTER-len/2,y,c);}
+
+void print_center(const char *c, const int y, const int len)
+{
+	go_print(sX_CENTER-len/2,y,c);
+}
 
 void terminal_clear(){
 	system("cls");

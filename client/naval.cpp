@@ -174,7 +174,7 @@ int pos_ships()
 	{
 		int placed = false;
 		len = SHIPS_LENS[n];
-		while (not placed)
+		while (!placed)
 		{
 			draw_ship();
 			draw_mat(nPLAYER_1);
@@ -204,12 +204,39 @@ int pos_ships()
 					break;
 				}
 				// Q W E R
-				case K_Q:{ next_ship_rand(); break;}
-				case K_W:{do{next_ship_rand();save_ship();n++;len = SHIPS_LENS[n];}while(n<SHIPS_MAX);placed=true;break;}
-				case K_E:{init(); n=0; break;}
-				case K_R:{dir = cross_dir(dir); break;}
+				case K_Q:{
+					next_ship_rand();
+					break;
+				}
+				case K_W:{
+					do {
+						next_ship_rand();
+						save_ship();
+						n++;
+						len = SHIPS_LENS[n];
+					} while (n<SHIPS_MAX);
+					
+					placed=true;
+					break;
+				}
+				case K_E:{
+					init();
+					n=0;
+					break;
+				}
+				case K_R:{
+					dir = cross_dir(dir);
+					break;
+				}
 				// INVIO
-				case K_ENTER:{if (allow_place()){save_ship(); placed=true;} break;}
+				case K_ENTER:{
+					if (allow_place())
+					{
+						save_ship();
+						placed = true;
+					}
+					break;
+				}
 			}
 
 		}
@@ -234,14 +261,15 @@ void set_sunk1(int slot, int x, int y){
 	draw_mat(slot);
 }
 
-void set_sunk(int slot, int x, int y, int dir, int len){
-	if (dir == HORIZONTAL){
-		for (int l=0; l<len; l++){
-			set_pos_mat(slot,DRAW,x+l,y,SUNK);}
-	}else if (dir == VERTICAL){
-		for (int l=0; l<len; l++){
-			set_pos_mat(slot,DRAW,x,y+l,SUNK);}
-	}
+void set_sunk(int slot, int x, int y, int dir, int len)
+{
+	if (dir == HORIZONTAL)
+		for (int l=0; l<len; l++)
+			set_pos_mat(slot,DRAW,x+l,y,SUNK);
+	else if (dir == VERTICAL)
+		for (int l=0; l<len; l++)
+			set_pos_mat(slot,DRAW,x,y+l,SUNK);
+	
 	/* Metti acqua intorno alla nave affondata
 	if (slot == nPLAYER_2){
 		if (dir == HORIZONTAL){

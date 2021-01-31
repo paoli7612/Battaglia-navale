@@ -1,6 +1,9 @@
 <img src="screen/001.PNG"/>
 <img src="screen/002.PNG"/>
 
+## Compile
+add to compiler `-lwsock32`
+
 ## Avvio
 
 1. run **battaglia_navale.bat** and select **SERVER**

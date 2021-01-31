@@ -4,7 +4,7 @@
 void info_show(){
 	system("cls");
 	color(COLOR_TITLES);
-	print_center("INFO",4,sizeof("INFO"));
+	print_center("INFO",4,4);
 	color(COLOR_RECT);
 	draw_rect(sMRG,sMRG-1,sX_TOT-sMRG,sMRG+22);
 	draw_rect2(sMRG+3,sMRG+2,sX_CENTER-4,sY_CENTER_LAUNCHER-4);

@@ -11,7 +11,8 @@ int sock;
 char buffer[ML];
 struct sockaddr_in saddr;
 
-void ask_credential(){
+void ask_credential()
+{
 	draw_ask_question();
 	
 	color(COLOR_CREDENTIAL);
@@ -55,7 +56,8 @@ void reset_buffer()
 
 void client_send(char buffer[ML])
 {
-	send(sock, buffer, sizeof(buffer), 0);	
+	
+	send(sock, buffer, sizeof(char[ML]), 0);	
 }
 
 void client_recv()
