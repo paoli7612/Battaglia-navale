@@ -1,12 +1,19 @@
 //launcher/main.cpp
 #include "info.cpp"
+
 char key_pressed;
+
 int main(int argc, char *argv[]){
+	
 	init_terminal(LAUNCHER);
-	int running = true;
+	
 	draw_launcher();
+	
+	int running = true;
 	while (running){
+		
 		select_menu();
+		
 		switch(select_y){
 			case mSTART:
 				if (argc == 2) system("start client/main.exe byBatch");

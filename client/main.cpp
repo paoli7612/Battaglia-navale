@@ -6,20 +6,19 @@ int main(int argc, char *argv[]){
 	ask_credential();
 	init_terminal(CLIENT);
 	draw_client(nickname, addr, port);
-	int vincitore;
 
 	if (client_start())
 	{
 		sleep(1);
 		terminal_clear();
-		vincitore = partita_start();
+		int vincitore = partita_start();
 		draw_command(nVITTORIA_GIOCATORE,vincitore,nickname_client);
 		getchar();
 		getchar();
 	}
 	else
 	{
-		system("cls");
+		system("CLS");
 		printf("Connessione non riuscita");
 		sleep(3);
 	}
